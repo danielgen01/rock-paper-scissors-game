@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState ,useEffect} from "react"
 import { Rock } from "./weapons/Rock"
 import { Scissors } from "./weapons/Scissors"
 import { Paper } from "./weapons/Paper"
@@ -9,6 +9,7 @@ const Mainbanner = () => {
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
   const [selectedWeapon, setSelectedWeapon] = useState("")
   const [comWeapon, setComWeapon] = useState("")
+  const [renderComWeapon, setRenderComWeapon] = useState(false)
 
   const weaponProps = {
     selectedWeapon,
@@ -36,6 +37,14 @@ const Mainbanner = () => {
         ""
     }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setRenderComWeapon(true);
+    }, 3500);
+  
+    return () => clearTimeout(timeout);
+  }, []);
 
   function startGame() {
     setIsGameStarted(true)
@@ -94,13 +103,15 @@ const Mainbanner = () => {
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
-          {comWeapon === "Paper" ? (
-            <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
-          ) : selectedWeapon === "Rock" ? (
-            <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
-          ) : (
-            <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
-          )}
+          {renderComWeapon && (
+      comWeapon === "Paper" ? (
+        <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
+      ) : selectedWeapon === "Rock" ? (
+        <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+      ) : (
+        <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+      )
+    )}
         </div>
       </div>
     </main>
