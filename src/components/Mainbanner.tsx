@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { Rock } from "./weapons/Rock"
 import { Scissors } from "./weapons/Scissors"
 import { Paper } from "./weapons/Paper"
@@ -10,6 +10,7 @@ const Mainbanner = () => {
   const [selectedWeapon, setSelectedWeapon] = useState("")
   const [comWeapon, setComWeapon] = useState("")
   const [renderComWeapon, setRenderComWeapon] = useState(false)
+  const [result, setResult] = useState("")
 
   const weaponProps = {
     selectedWeapon,
@@ -38,20 +39,55 @@ const Mainbanner = () => {
     }
   }
 
+  function calculateResult() {
+    switch (`${selectedWeapon} ${comWeapon}`) {
+      case "Rock Rock":
+        setResult("TIE");
+        break;
+      case "Rock Paper":
+        setResult("COM WON");
+        break;
+      case "Rock Scissors":
+        setResult("USER WON");
+        break;
+      case "Paper Rock":
+        setResult("USER WON");
+        break;
+      case "Paper Paper":
+        setResult("TIE");
+        break;
+      case "Paper Scissors":
+        setResult("COM WON");
+        break;
+      case "Scissors Rock":
+        setResult("COM WON");
+        break;
+      case "Scissors Paper":
+        setResult("USER WON");
+        break;
+      case "Scissors Scissors":
+        setResult("TIE");
+        break;
+      default:
+        setResult("");
+        break;
+    }
+  }
+  
+
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setRenderComWeapon(true);
-    }, 3500);
-  
-    return () => clearTimeout(timeout);
-  }, []);
+      setRenderComWeapon(true)
+    }, 1500)
+    
+
+    return () => clearTimeout(timeout)
+  }, [])
 
   function startGame() {
     setIsGameStarted(true)
     calculateComWeapon()
   }
-
-  
 
   return (
     <main className="main flex flex-col items-center">
@@ -99,19 +135,20 @@ const Mainbanner = () => {
           )}
         </div>
 
+       
+
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
-          {renderComWeapon && (
-      comWeapon === "Paper" ? (
-        <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
-      ) : selectedWeapon === "Rock" ? (
-        <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
-      ) : (
-        <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
-      )
-    )}
+          {renderComWeapon &&
+            (comWeapon === "Paper" ? (
+              <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
+            ) : selectedWeapon === "Rock" ? (
+              <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+            ) : (
+              <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+            ))}
         </div>
       </div>
     </main>
