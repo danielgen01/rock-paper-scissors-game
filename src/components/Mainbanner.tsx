@@ -7,6 +7,12 @@ import Rules from "./Rules"
 const Mainbanner = () => {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
+  const [selectedWeapon, setSelectedWeapon] = useState("")
+
+  const weaponProps = {
+    selectedWeapon,
+    setSelectedWeapon,
+  }
 
   function toggleRules() {
     setIsRulesOpen(!isRulesOpen)
@@ -26,9 +32,9 @@ const Mainbanner = () => {
           Pick your weapon
         </h1>
         <div className="icons w-[600px] flex items-center justify-center gap-20 flex-wrap bg-[url(../../images/bg-triangle.svg)] bg-no-repeat bg-center">
-          <Paper startGame={startGame}/>
-          <Scissors  startGame={startGame}/>
-          <Rock  startGame={startGame}/>
+          <Paper startGame={startGame} {...weaponProps} />
+          <Scissors startGame={startGame} {...weaponProps} />
+          <Rock startGame={startGame} {...weaponProps} />
         </div>
         <div className="button-ctn flex justify-center w-full ">
           <button
@@ -53,12 +59,20 @@ const Mainbanner = () => {
       >
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
           <h1 className="uppercase font-bold -tracking-tighter">you picked</h1>
-          <Paper startGame={""}/>
+          {selectedWeapon === "Paper" ? (
+            <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : selectedWeapon === "Rock" ? (
+            <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : (
+            <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          )}
         </div>
 
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
-          <h1 className="uppercase font-bold -tracking-tighter">computer picked</h1>
-          <Paper startGame={""}/>
+          <h1 className="uppercase font-bold -tracking-tighter">
+            computer picked
+          </h1>
+          <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
         </div>
       </div>
     </main>
