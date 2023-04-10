@@ -3,7 +3,7 @@ import React from "react"
 const Headbanner = () => {
   return (
     <div className="w-full h-52 flex justify-center items-center">
-      <div className="content bg-black w-[599px] h-36 rounded-xl border-4 border-header-outline  flex justify-between">
+      <div className="content  w-[599px] h-36 rounded-xl border-4 border-header-outline  flex justify-between">
         <div className="text-column flex flex-col justify-center uppercase text-white font-bold text-3xl ml-5">
           <h1>Rock</h1>
           <h1>Paper</h1>
