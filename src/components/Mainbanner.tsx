@@ -8,6 +8,7 @@ const Mainbanner = () => {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
   const [selectedWeapon, setSelectedWeapon] = useState("")
+  const [comWeapon, setComWeapon] = useState("")
 
   const weaponProps = {
     selectedWeapon,
@@ -18,9 +19,30 @@ const Mainbanner = () => {
     setIsRulesOpen(!isRulesOpen)
   }
 
+  function calculateComWeapon() {
+    let randomNum: number = Math.floor(Math.random() * 3)
+
+    switch (randomNum) {
+      case 0:
+        setComWeapon("Paper")
+        break
+      case 1:
+        setComWeapon("Rock")
+        break
+      case 2:
+        setComWeapon("Scissors")
+        break
+      default:
+        ""
+    }
+  }
+
   function startGame() {
     setIsGameStarted(true)
+    calculateComWeapon()
   }
+
+  
 
   return (
     <main className="main flex flex-col items-center">
@@ -72,7 +94,13 @@ const Mainbanner = () => {
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
-          <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          {comWeapon === "Paper" ? (
+            <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : selectedWeapon === "Rock" ? (
+            <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : (
+            <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          )}
         </div>
       </div>
     </main>
