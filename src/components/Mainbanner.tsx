@@ -2,7 +2,7 @@ import React from "react"
 import papericon from "../../images/icon-paper.svg"
 import rockicon from "../../images/icon-rock.svg"
 import scissorsicon from "../../images/icon-scissors.svg"
-import triangleicon from "../../images/bg-triangle.svg"
+
 
 const Mainbanner = () => {
   return (
