@@ -52,13 +52,13 @@ const Mainbanner = () => {
         style={{ display: isGameStarted ? "grid" : "none" }}
       >
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
-          <h1 className="uppercase font-bold ">you picked</h1>
-          <Paper />
+          <h1 className="uppercase font-bold -tracking-tighter">you picked</h1>
+          <Paper startGame={""}/>
         </div>
 
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
-          <h1 className="uppercase font-bold">computer picked</h1>
-          <Paper />
+          <h1 className="uppercase font-bold -tracking-tighter">computer picked</h1>
+          <Paper startGame={""}/>
         </div>
       </div>
     </main>
