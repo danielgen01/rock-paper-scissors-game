@@ -15,6 +15,7 @@ const Rules:React.FC<props> = ({isRulesOpen,setIsRulesOpen,toggleRules}) => {
       <div
         className="rules-ctn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/80 h-screen w-screen"
         style={{ display: isRulesOpen ? "block" : "none" }}
+        onClick={toggleRules}
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="rules-image-ctn h-screen w-screen  lg:w-[500px] lg:h-[500px] bg-white rounded-xl flex flex-col justify-center lg:justify-around">
