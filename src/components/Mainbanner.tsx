@@ -12,8 +12,12 @@ const Mainbanner = () => {
     setIsRulesOpen(!isRulesOpen)
   }
 
+  function startGame() {
+    setIsGameStarted(true)
+  }
+
   return (
-    <main className="main">
+    <main className="main flex flex-col items-center">
       <div
         className="icons-ctn w-full min-h-[500px] justify-center flex-col items-center"
         style={{ display: !isGameStarted ? "flex" : "none" }}
@@ -22,9 +26,9 @@ const Mainbanner = () => {
           Pick your weapon
         </h1>
         <div className="icons w-[600px] flex items-center justify-center gap-20 flex-wrap bg-[url(../../images/bg-triangle.svg)] bg-no-repeat bg-center">
-          <Paper />
-          <Scissors />
-          <Rock />
+          <Paper startGame={startGame}/>
+          <Scissors  startGame={startGame}/>
+          <Rock  startGame={startGame}/>
         </div>
         <div className="button-ctn flex justify-center w-full ">
           <button
@@ -40,6 +44,22 @@ const Mainbanner = () => {
           isRulesOpen={isRulesOpen}
           setIsRulesOpen={setIsRulesOpen}
         />
+      </div>
+
+      {/* Renders when Game starts */}
+      <div
+        className="step-2-screen grid grid-cols-2  w-full mt-20"
+        style={{ display: isGameStarted ? "grid" : "none" }}
+      >
+        <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
+          <h1 className="uppercase font-bold ">you picked</h1>
+          <Paper />
+        </div>
+
+        <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
+          <h1 className="uppercase font-bold">computer picked</h1>
+          <Paper />
+        </div>
       </div>
     </main>
   )
