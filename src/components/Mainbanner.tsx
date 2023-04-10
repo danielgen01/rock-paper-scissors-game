@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import { Rock } from "./weapons/Rock"
 import { Scissors } from "./weapons/Scissors"
 import { Paper } from "./weapons/Paper"
+import Rules from "./Rules"
 
 const Mainbanner = () => {
   const [isGameStarted,setIsGameStarted] = useState<boolean>(false)
@@ -14,6 +15,7 @@ const Mainbanner = () => {
         <Scissors />
         <Rock />
       </div>
+      <Rules />
     </main>
   )
 }
