@@ -4,8 +4,14 @@ import { Scissors } from "./weapons/Scissors"
 import { Paper } from "./weapons/Paper"
 import Rules from "./Rules"
 
+
 const Mainbanner = () => {
   const [isGameStarted,setIsGameStarted] = useState<boolean>(false)
+  const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
+
+  function toggleRules(){
+    setIsRulesOpen(!isRulesOpen)
+  }
 
   return (
     <main className="main-icons-ctn w-full min-h-[500px] justify-center flex-col items-center"style={{display:!isGameStarted? "flex" : "none"}}>
@@ -15,9 +21,19 @@ const Mainbanner = () => {
         <Scissors />
         <Rock />
       </div>
-      <Rules />
+      <div className="button-ctn flex justify-center w-full fixed">
+      <button
+        type="button"
+        className="text-white  font-normal border-2 mt-10 ml-52 lg:ml-[500px] px-7 py-2 rounded-md "
+        onClick={toggleRules}
+      >
+        Rules
+      </button>
+    </div>
+      <Rules toggleRules={toggleRules} isRulesOpen={isRulesOpen} setIsRulesOpen={setIsRulesOpen}/>
     </main>
   )
+
 }
 
 export default Mainbanner
