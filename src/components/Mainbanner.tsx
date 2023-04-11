@@ -61,19 +61,16 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
       case "Paper Paper":
       case "Scissors Scissors":
         setResult("TIE")
-        console.log(selectedWeapon, comWeapon)
         break
       case "Rock Paper":
       case "Paper Scissors":
       case "Scissors Rock":
         setResult("COM WON")
-        console.log(selectedWeapon, comWeapon)
         break
       case "Rock Scissors":
       case "Paper Rock":
       case "Scissors Paper":
         setResult("USER WON")
-        console.log(selectedWeapon, comWeapon)
         break
       default:
         setResult("")
