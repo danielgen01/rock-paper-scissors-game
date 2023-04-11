@@ -48,37 +48,26 @@ const Mainbanner = () => {
   const calculateResult = () => {
     switch (`${selectedWeapon} ${comWeapon}`) {
       case "Rock Rock":
-        setResult("TIE")
-        break
-      case "Rock Paper":
-        setResult("COM WON")
-        break
-      case "Rock Scissors":
-        setResult("USER WON")
-        break
-      case "Paper Rock":
-        setResult("USER WON")
-        break
       case "Paper Paper":
-        setResult("TIE")
-        break
-      case "Paper Scissors":
-        setResult("COM WON")
-        break
-      case "Scissors Rock":
-        setResult("COM WON")
-        break
-      case "Scissors Paper":
-        setResult("USER WON")
-        break
       case "Scissors Scissors":
-        setResult("TIE")
-        break
+        setResult("TIE");
+        break;
+      case "Rock Paper":
+      case "Paper Scissors":
+      case "Scissors Rock":
+        setResult("COM WON");
+        break;
+      case "Rock Scissors":
+      case "Paper Rock":
+      case "Scissors Paper":
+        setResult("USER WON");
+        break;
       default:
-        setResult("TIE")
-        break
+        setResult("");
+        break;
     }
-  }
+  };
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
