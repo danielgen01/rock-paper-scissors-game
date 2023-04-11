@@ -211,9 +211,9 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
       </div>
 
       {result && (
-        <div className="RESULT CTN mt-5 flex flex-col items-center gap-10"
-        data-aos="fade-in"
-       
+        <div
+          className="RESULT CTN mt-5 flex flex-col items-center gap-10"
+          data-aos="fade-in"
         >
           <h1 className="text-red-500 text-5xl font-bold uppercase">
             {result}
