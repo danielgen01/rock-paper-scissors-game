@@ -3,8 +3,11 @@ import { Rock } from "./weapons/Rock"
 import { Scissors } from "./weapons/Scissors"
 import { Paper } from "./weapons/Paper"
 import Rules from "./Rules"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 const Mainbanner = () => {
+  AOS.init()
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
   const [selectedWeapon, setSelectedWeapon] = useState("")
@@ -42,44 +45,42 @@ const Mainbanner = () => {
   function calculateResult() {
     switch (`${selectedWeapon} ${comWeapon}`) {
       case "Rock Rock":
-        setResult("TIE");
-        break;
+        setResult("TIE")
+        break
       case "Rock Paper":
-        setResult("COM WON");
-        break;
+        setResult("COM WON")
+        break
       case "Rock Scissors":
-        setResult("USER WON");
-        break;
+        setResult("USER WON")
+        break
       case "Paper Rock":
-        setResult("USER WON");
-        break;
+        setResult("USER WON")
+        break
       case "Paper Paper":
-        setResult("TIE");
-        break;
+        setResult("TIE")
+        break
       case "Paper Scissors":
-        setResult("COM WON");
-        break;
+        setResult("COM WON")
+        break
       case "Scissors Rock":
-        setResult("COM WON");
-        break;
+        setResult("COM WON")
+        break
       case "Scissors Paper":
-        setResult("USER WON");
-        break;
+        setResult("USER WON")
+        break
       case "Scissors Scissors":
-        setResult("TIE");
-        break;
+        setResult("TIE")
+        break
       default:
-        setResult("");
-        break;
+        setResult("")
+        break
     }
   }
-  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setRenderComWeapon(true)
-    }, 1500)
-    
+    }, 2500)
 
     return () => clearTimeout(timeout)
   }, [])
@@ -94,6 +95,14 @@ const Mainbanner = () => {
       <div
         className="icons-ctn w-full min-h-[500px] justify-center flex-col items-center"
         style={{ display: !isGameStarted ? "flex" : "none" }}
+        data-aos="fade-in"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
       >
         <h1 className="text-white text-5xl font-bold mb-10">
           Pick your weapon
@@ -126,6 +135,7 @@ const Mainbanner = () => {
       >
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
           <h1 className="uppercase font-bold -tracking-tighter">you picked</h1>
+
           {selectedWeapon === "Paper" ? (
             <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
           ) : selectedWeapon === "Rock" ? (
@@ -135,12 +145,11 @@ const Mainbanner = () => {
           )}
         </div>
 
-       
-
         <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
+          <div></div>
           {renderComWeapon &&
             (comWeapon === "Paper" ? (
               <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
@@ -150,6 +159,10 @@ const Mainbanner = () => {
               <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
             ))}
         </div>
+      </div>
+
+      <div className="div">
+        <h1 className="text-red-500 uppercase">{result}</h1>
       </div>
     </main>
   )

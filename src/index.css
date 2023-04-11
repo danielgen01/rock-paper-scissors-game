@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Main-Font";
-    src: url("https://fonts.google.com/specimen/Barlow+Semi+Condensed");
-}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
 body{
-    font-family:"Main-Font", Arial, Helvetica, sans-serif;
+    font-family: 'Barlow Semi Condensed', sans-serif;
 }
