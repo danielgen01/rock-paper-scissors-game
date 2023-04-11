@@ -11,7 +11,7 @@ export const Paper: React.FC<props> = ({ startGame,selectedWeapon,setSelectedWea
   function handleWeaponClick() {
     startGame()
     setSelectedWeapon("Paper")
-    console.log(selectedWeapon)
+    
   }
 
   return (

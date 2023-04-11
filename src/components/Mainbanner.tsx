@@ -47,7 +47,7 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
     }
   }
 
-  const calculateResult = () => {
+  const calculateResult = async() => {
     switch (`${selectedWeapon} ${comWeapon}`) {
       case "Rock Rock":
       case "Paper Paper":
@@ -97,10 +97,10 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
   function endGame() {
     updateScore()
     setIsGameStarted(false)
-    setComWeapon("")
     setRenderComWeapon(false)
-    setResult("")
+    setComWeapon("")
     setSelectedWeapon("")
+    setResult("")
   }
 
   return (
@@ -108,19 +108,19 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
       <div
         className="icons-ctn w-full min-h-[500px] justify-center flex-col items-center"
         style={{ display: !isGameStarted ? "flex" : "none" }}
-        data-aos="fade-in"
-        data-aos-offset="200"
-        data-aos-delay="50"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in-out"
-        data-aos-mirror="true"
-        data-aos-once="false"
-        data-aos-anchor-placement="top-center"
+        // data-aos="fade-in"
+        // data-aos-offset="200"
+        // data-aos-delay="50"
+        // data-aos-duration="1000"
+        // data-aos-easing="ease-in-out"
+        // data-aos-mirror="true"
+        // data-aos-once="false"
+        // data-aos-anchor-placement="top-center"
       >
-        <h1 className="text-white text-5xl font-bold mb-10">
+        <h1 className="text-white text-5xl font-bold mb-10 hidden lg:block">
           Pick your weapon
         </h1>
-        <div className="icons w-[600px] flex items-center justify-center gap-20 flex-wrap bg-[url(../../images/bg-triangle.svg)] bg-no-repeat bg-center">
+        <div className="icons w-[350px] gap-2 lg:w-[600px] flex items-center justify-center lg:gap-20 flex-wrap bg-[url(../../images/bg-triangle.svg)] bg-no-repeat bg-center">
           <Paper startGame={startGame} {...weaponProps} />
           <Scissors startGame={startGame} {...weaponProps} />
           <Rock startGame={startGame} {...weaponProps} />
