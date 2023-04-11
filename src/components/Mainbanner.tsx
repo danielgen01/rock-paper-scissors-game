@@ -6,7 +6,12 @@ import Rules from "./Rules"
 import AOS from "aos"
 import "aos/dist/aos.css"
 
-const Mainbanner = () => {
+type props = {
+  score:number
+  setScore:any
+}
+
+const Mainbanner:React.FC<props> = ({score,setScore}) => {
   AOS.init()
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
@@ -14,7 +19,7 @@ const Mainbanner = () => {
   const [comWeapon, setComWeapon] = useState("")
   const [renderComWeapon, setRenderComWeapon] = useState(false)
   const [result, setResult] = useState("")
-
+ 
   const weaponProps = {
     selectedWeapon,
     setSelectedWeapon,
@@ -65,6 +70,16 @@ const Mainbanner = () => {
     }
   }
 
+  function updateScore(){
+    if(result === "USER WON") {
+      setScore((prevScore: number) => prevScore + 1)
+    }else if (result === "COM WON"){
+      setScore((prevScore:number) => prevScore - 1)
+    }else{
+      setScore((prevScore:number) => prevScore)
+    }
+  }
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setRenderComWeapon(true)
@@ -79,13 +94,13 @@ const Mainbanner = () => {
     calculateComWeapon()
   }
 
-  function endGame(){
+  function endGame() {
+    updateScore()
     setIsGameStarted(false)
     setComWeapon("")
     setRenderComWeapon(false)
     setResult("")
     setSelectedWeapon("")
-    
   }
 
   return (
