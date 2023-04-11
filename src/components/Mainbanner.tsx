@@ -22,9 +22,8 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setRenderComWeapon(true)
       calculateResult()
-    }, 1500)
+    }, 2500)
 
     return () => clearTimeout(timeout)
   }, [startGame])
@@ -92,9 +91,41 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
     }
   }
 
+  function moveAndBounce() {
+    const box1: any = document.getElementById("User-Div")
+    const box2: any = document.getElementById("Com-Div")
+    const speed = 3
+
+    let direction = 1
+    let distance = 0
+
+    const moveBoxes = () => {
+      distance += speed * direction
+      box1.style.transform = `translateX(${distance}px)`
+      box2.style.transform = `translateX(-${distance}px)`
+
+      if (distance >= box1.offsetWidth / 2) {
+        direction = -1
+      } else if (distance <= 0) {
+        direction = 1
+      }
+    }
+
+    const animationId = setInterval(moveBoxes, 10)
+
+    setTimeout(() => {
+      clearInterval(animationId)
+      // Rückbewegung
+      box1.style.transform = "translateX(0)"
+      box2.style.transform = "translateX(0)"
+    }, 3000)
+  }
+
   function startGame() {
     setIsGameStarted(true)
     calculateComWeapon()
+    setRenderComWeapon(true)
+    moveAndBounce()
   }
 
   function endGame() {
@@ -149,7 +180,10 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
         className="step-2-screen grid grid-cols-2  w-full mt-20"
         style={{ display: isGameStarted ? "grid" : "none" }}
       >
-        <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
+        <div
+          className="grid-item-1 text-white flex justify-center items-center flex-col gap-5"
+          id="User-Div"
+        >
           <h1 className="uppercase font-bold -tracking-tighter">you picked</h1>
 
           {selectedWeapon === "Paper" ? (
@@ -161,7 +195,10 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
           )}
         </div>
 
-        <div className="grid-item-1 text-white flex justify-center items-center flex-col gap-5">
+        <div
+          className="grid-item-2 text-white flex justify-center items-center flex-col gap-5"
+          id="Com-Div"
+        >
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
