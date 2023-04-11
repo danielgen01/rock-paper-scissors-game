@@ -1,19 +1,20 @@
 import React from "react"
 
 type props = {
-  score:number
-  setScore:any
+  score: number
+  setScore: any
 }
 
-
-const Headbanner:React.FC<props> = ({score, setScore}) => {
+const Headbanner: React.FC<props> = ({ score, setScore }) => {
   return (
-    <div className="mx-10 h-52 flex justify-center items-center">
-      <div className="content  w-[599px] h-36 rounded-xl border-4 border-header-outline  flex justify-between">
-        <div className="text-column flex flex-col justify-center uppercase text-white font-bold text-xl lg:text-3xl ml-5">
+    <div className="mx-10 h-60 flex justify-center items-center">
+      <div className="content  w-[599px] h-40 rounded-xl border-4 border-header-outline  flex justify-between">
+        <div className="text-column flex flex-col justify-center uppercase text-white font-bold text-xl lg:text-2xl ml-5">
           <h1>Rock</h1>
           <h1>Paper</h1>
           <h1>Scissors</h1>
+          <h1>Lizzard</h1>
+          <h1>Spock</h1>
         </div>
         <div className="score-ctn bg-white rounded-xl mr-5 flex flex-col items-center w-32 h-2/3 justify-center mt-5">
           <h1 className="uppercase text-score-text font-bold text-sm">score</h1>

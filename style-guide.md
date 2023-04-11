@@ -14,8 +14,8 @@ The designs were created to the following widths:
 - Scissors Gradient: rgb(236, 158, 14) to rgb(236, 169, 34)
 - Paper Gradient: rgb(72, 101, 244) to rgb(86, 113, 245)
 - Rock Gradient: rgb(220, 46, 78) to rgb(221, 64, 93)
-- Lizard Gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%)
-- Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%)
+- Lizard Gradient: rgb(230, 220, 249) to rgb(140, 93, 229)
+- Cyan: rgb(64, 185, 206) to rgb(82, 190, 209)
 
 ### Neutral
 

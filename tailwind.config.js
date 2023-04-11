@@ -15,6 +15,11 @@ export default {
         "paper-gradient-2": "rgb(86, 113, 245)",
         "rock-gradient-1": "rgb(220, 46, 78)",
         "rock-gradient-2": "rgb(221, 64, 93)",
+        "lizard-gradient-1": "rgb(230, 220, 249)",
+        "lizard-gradient-2": "rgb(140, 93, 229)",
+        "spock-gradient-1": "rgb(64, 185, 206)",
+        "spock-gradient-2": "rgb(82, 190, 209)",
+
       },
     },
   },

@@ -5,6 +5,8 @@ import { Paper } from "./weapons/Paper"
 import Rules from "./Rules"
 import AOS from "aos"
 import "aos/dist/aos.css"
+import { Lizard } from "./weapons/Lizard"
+import { Spock } from "./weapons/Spock"
 
 type props = {
   score: number
@@ -38,7 +40,7 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
   }
 
   function calculateComWeapon() {
-    let randomNum: number = Math.floor(Math.random() * 3)
+    let randomNum: number = Math.floor(Math.random() * 5)
 
     switch (randomNum) {
       case 0:
@@ -50,6 +52,12 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
       case 2:
         setComWeapon("Rock")
         break
+      case 3:
+        setComWeapon("Lizard")
+        break
+      case 4:
+        setComWeapon("Spock")
+        break
       default:
         ""
     }
@@ -57,26 +65,43 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
 
   const calculateResult = async () => {
     switch (`${selectedWeapon} ${comWeapon}`) {
+      case "Rock Scissors":
+      case "Rock Lizard":
+      case "Paper Rock":
+      case "Paper Spock":
+      case "Scissors Paper":
+      case "Scissors Lizard":
+      case "Lizard Paper":
+      case "Lizard Spock":
+      case "Spock Rock":
+      case "Spock Scissors":
+        setResult("USER WON");
+        break;
+      case "Rock Paper":
+      case "Rock Spock":
+      case "Paper Scissors":
+      case "Paper Lizard":
+      case "Scissors Rock":
+      case "Scissors Spock":
+      case "Lizard Rock":
+      case "Lizard Scissors":
+      case "Spock Paper":
+      case "Spock Lizard":
+        setResult("COM WON");
+        break;
       case "Rock Rock":
       case "Paper Paper":
       case "Scissors Scissors":
-        setResult("TIE")
-        break
-      case "Rock Paper":
-      case "Paper Scissors":
-      case "Scissors Rock":
-        setResult("COM WON")
-        break
-      case "Rock Scissors":
-      case "Paper Rock":
-      case "Scissors Paper":
-        setResult("USER WON")
-        break
+      case "Lizard Lizard":
+      case "Spock Spock":
+        setResult("TIE");
+        break;
       default:
-        setResult("")
-        break
+        setResult("");
+        break;
     }
-  }
+  };
+  
 
   function updateScore() {
     if (result === "USER WON") {
@@ -151,10 +176,19 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
         <h1 className="text-white text-5xl font-bold mb-10 hidden lg:block">
           Pick your weapon
         </h1>
-        <div className="icons w-[350px] gap-2 lg:w-[600px] flex items-center justify-center lg:gap-20 flex-wrap bg-[url(../../images/bg-triangle.svg)] bg-no-repeat bg-center">
-          <Paper startGame={startGame} {...weaponProps} />
+        <div
+          className="icons w-[350px] lg:w-[600px] flex items-center justify-center flex-col
+          lg:gap-20 flex-nowrap bg-[url(../../images/bg-pentagon.svg)] bg-no-repeat bg-center"
+        >
           <Scissors startGame={startGame} {...weaponProps} />
-          <Rock startGame={startGame} {...weaponProps} />
+          <div className="flex justify-between w-screen lg:w-auto gap-10 lg:gap-52 lg:-mt-20 px-2">
+            <Spock startGame={startGame} {...weaponProps} />
+            <Paper startGame={startGame} {...weaponProps} />
+          </div>
+          <div className="flex justify-center w-screen  mt-5  lg:gap-14 lg:-mt-10 gap-2">
+            <Lizard startGame={startGame} {...weaponProps} />
+            <Rock startGame={startGame} {...weaponProps} />
+          </div>
         </div>
         <div className="button-ctn flex justify-center w-full ">
           <button
@@ -187,8 +221,12 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
             <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
           ) : selectedWeapon === "Rock" ? (
             <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
-          ) : (
+          ) : selectedWeapon === "Scissors" ? (
             <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : selectedWeapon === "Spock" ? (
+            <Spock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+          ) : (
+            <Lizard startGame={""} selectedWeapon="" setSelectedWeapon="" />
           )}
         </div>
 
@@ -204,8 +242,12 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
               <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
             ) : comWeapon === "Rock" ? (
               <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
-            ) : (
+            ) : comWeapon === "Scissors" ? (
               <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
+            ) : comWeapon === "Spock" ? (
+              <Spock startGame={""} selectedWeapon="" setSelectedWeapon="" />
+            ) : (
+              <Lizard startGame={""} selectedWeapon="" setSelectedWeapon="" />
             ))}
         </div>
       </div>
@@ -214,20 +256,21 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
         <div
           className="RESULT CTN mt-5 flex flex-col items-center gap-10"
           data-aos="fade-in"
-        >{result === "COM WON" &&(
-          <h1 className="text-red-500 text-5xl font-bold uppercase">
-            {result}
-          </h1>
+        >
+          {result === "COM WON" && (
+            <h1 className="text-red-500 text-5xl font-bold uppercase">
+              {result}
+            </h1>
           )}
-          {result === "USER WON" &&(
-          <h1 className="text-blue-500 text-5xl font-bold uppercase">
-            {result}
-          </h1>
+          {result === "USER WON" && (
+            <h1 className="text-blue-500 text-5xl font-bold uppercase">
+              {result}
+            </h1>
           )}
-           {result === "TIE" &&(
-          <h1 className="text-green-500 text-5xl font-bold uppercase">
-            {result}
-          </h1>
+          {result === "TIE" && (
+            <h1 className="text-green-500 text-5xl font-bold uppercase">
+              {result}
+            </h1>
           )}
           <button
             type="button"

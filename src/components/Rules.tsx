@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import rules from "../../images/image-rules.svg"
+import bonusrules from "../../images/image-rules-bonus.svg"
 import { IoMdClose } from "react-icons/io"
 
 type props = {
@@ -13,7 +13,7 @@ const Rules:React.FC<props> = ({isRulesOpen,setIsRulesOpen,toggleRules}) => {
   return (
     <>
       <div
-        className="rules-ctn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/80 h-screen w-screen"
+        className="rules-ctn fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black/80 h-screen w-screen"
         style={{ display: isRulesOpen ? "block" : "none" }}
         onClick={toggleRules}
       >
@@ -26,7 +26,7 @@ const Rules:React.FC<props> = ({isRulesOpen,setIsRulesOpen,toggleRules}) => {
               <IoMdClose className="text-3xl text-gray-500 cursor-pointer hover:opacity-70"  onClick={toggleRules}/>
             </div>
             <div className="image-flex-box justify-center items-center flex">
-              <img src={rules} />
+              <img src={bonusrules} />
             </div>
           </div>
         </div>
