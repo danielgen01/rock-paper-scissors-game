@@ -14,9 +14,6 @@ const Mainbanner = () => {
   const [comWeapon, setComWeapon] = useState("")
   const [renderComWeapon, setRenderComWeapon] = useState(false)
   const [result, setResult] = useState("")
-  
-
- 
 
   const weaponProps = {
     selectedWeapon,
@@ -50,24 +47,23 @@ const Mainbanner = () => {
       case "Rock Rock":
       case "Paper Paper":
       case "Scissors Scissors":
-        setResult("TIE");
-        break;
+        setResult("TIE")
+        break
       case "Rock Paper":
       case "Paper Scissors":
       case "Scissors Rock":
-        setResult("COM WON");
-        break;
+        setResult("COM WON")
+        break
       case "Rock Scissors":
       case "Paper Rock":
       case "Scissors Paper":
-        setResult("USER WON");
-        break;
+        setResult("USER WON")
+        break
       default:
-        setResult("");
-        break;
+        setResult("")
+        break
     }
-  };
-  
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -78,10 +74,18 @@ const Mainbanner = () => {
     return () => clearTimeout(timeout)
   }, [startGame])
 
-
   function startGame() {
     setIsGameStarted(true)
     calculateComWeapon()
+  }
+
+  function endGame(){
+    setIsGameStarted(false)
+    setComWeapon("")
+    setRenderComWeapon(false)
+    setResult("")
+    setSelectedWeapon("")
+    
   }
 
   return (
@@ -154,13 +158,20 @@ const Mainbanner = () => {
         </div>
       </div>
 
-      
-        <div className="RESULT CTN mt-5">
+      {result && (
+        <div className="RESULT CTN mt-5 flex flex-col items-center gap-10">
           <h1 className="text-red-500 text-5xl font-bold uppercase">
-             {result}
+            {result}
           </h1>
+          <button
+            type="button"
+            className="bg-white px-10 py-5 rounded-xl uppercase text-dark-text font-bold shadow-lg hover:opacity-75 -tracking-tight"
+            onClick={endGame}
+          >
+            play again
+          </button>
         </div>
-     
+      )}
     </main>
   )
 }
