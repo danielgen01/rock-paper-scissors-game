@@ -116,7 +116,7 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
   function moveAndBounce() {
     const box1: any = document.getElementById("User-Div")
     const box2: any = document.getElementById("Com-Div")
-    const speed = 3
+    const speed = 10
 
     let direction = 1
     let distance = 0
