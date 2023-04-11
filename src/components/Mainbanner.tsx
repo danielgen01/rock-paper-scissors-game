@@ -14,6 +14,9 @@ const Mainbanner = () => {
   const [comWeapon, setComWeapon] = useState("")
   const [renderComWeapon, setRenderComWeapon] = useState(false)
   const [result, setResult] = useState("")
+  
+
+ 
 
   const weaponProps = {
     selectedWeapon,
@@ -42,7 +45,7 @@ const Mainbanner = () => {
     }
   }
 
-  function calculateResult() {
+  const calculateResult = () => {
     switch (`${selectedWeapon} ${comWeapon}`) {
       case "Rock Rock":
         setResult("TIE")
@@ -72,7 +75,7 @@ const Mainbanner = () => {
         setResult("TIE")
         break
       default:
-        setResult("")
+        setResult("TIE")
         break
     }
   }
@@ -80,10 +83,12 @@ const Mainbanner = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setRenderComWeapon(true)
+      calculateResult()
     }, 2500)
 
     return () => clearTimeout(timeout)
-  }, [])
+  }, [startGame])
+
 
   function startGame() {
     setIsGameStarted(true)
@@ -149,7 +154,6 @@ const Mainbanner = () => {
           <h1 className="uppercase font-bold -tracking-tighter">
             computer picked
           </h1>
-          <div></div>
           {renderComWeapon &&
             (comWeapon === "Paper" ? (
               <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
@@ -161,9 +165,13 @@ const Mainbanner = () => {
         </div>
       </div>
 
-      <div className="div">
-        <h1 className="text-red-500 uppercase">{result}</h1>
-      </div>
+      
+        <div className="RESULT CTN mt-5">
+          <h1 className="text-red-500 text-5xl font-bold uppercase">
+             {result}
+          </h1>
+        </div>
+     
     </main>
   )
 }
