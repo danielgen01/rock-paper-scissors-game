@@ -214,10 +214,21 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
         <div
           className="RESULT CTN mt-5 flex flex-col items-center gap-10"
           data-aos="fade-in"
-        >
+        >{result === "COM WON" &&(
           <h1 className="text-red-500 text-5xl font-bold uppercase">
             {result}
           </h1>
+          )}
+          {result === "USER WON" &&(
+          <h1 className="text-blue-500 text-5xl font-bold uppercase">
+            {result}
+          </h1>
+          )}
+           {result === "TIE" &&(
+          <h1 className="text-green-500 text-5xl font-bold uppercase">
+            {result}
+          </h1>
+          )}
           <button
             type="button"
             className="bg-white px-10 py-5 rounded-xl uppercase text-dark-text font-bold shadow-lg hover:opacity-75 -tracking-tight"
