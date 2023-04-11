@@ -7,11 +7,11 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 
 type props = {
-  score:number
-  setScore:any
+  score: number
+  setScore: any
 }
 
-const Mainbanner:React.FC<props> = ({score,setScore}) => {
+const Mainbanner: React.FC<props> = ({ score, setScore }) => {
   AOS.init()
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
@@ -19,7 +19,16 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
   const [comWeapon, setComWeapon] = useState("")
   const [renderComWeapon, setRenderComWeapon] = useState(false)
   const [result, setResult] = useState("")
- 
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setRenderComWeapon(true)
+      calculateResult()
+    }, 1500)
+
+    return () => clearTimeout(timeout)
+  }, [startGame])
+
   const weaponProps = {
     selectedWeapon,
     setSelectedWeapon,
@@ -37,32 +46,35 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
         setComWeapon("Paper")
         break
       case 1:
-        setComWeapon("Rock")
+        setComWeapon("Scissors")
         break
       case 2:
-        setComWeapon("Scissors")
+        setComWeapon("Rock")
         break
       default:
         ""
     }
   }
 
-  const calculateResult = async() => {
+  const calculateResult = async () => {
     switch (`${selectedWeapon} ${comWeapon}`) {
       case "Rock Rock":
       case "Paper Paper":
       case "Scissors Scissors":
         setResult("TIE")
+        console.log(selectedWeapon, comWeapon)
         break
       case "Rock Paper":
       case "Paper Scissors":
       case "Scissors Rock":
         setResult("COM WON")
+        console.log(selectedWeapon, comWeapon)
         break
       case "Rock Scissors":
       case "Paper Rock":
       case "Scissors Paper":
         setResult("USER WON")
+        console.log(selectedWeapon, comWeapon)
         break
       default:
         setResult("")
@@ -70,24 +82,15 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
     }
   }
 
-  function updateScore(){
-    if(result === "USER WON") {
+  function updateScore() {
+    if (result === "USER WON") {
       setScore((prevScore: number) => prevScore + 1)
-    }else if (result === "COM WON"){
-      setScore((prevScore:number) => prevScore - 1)
-    }else{
-      setScore((prevScore:number) => prevScore)
+    } else if (result === "COM WON") {
+      setScore((prevScore: number) => prevScore - 1)
+    } else {
+      setScore((prevScore: number) => prevScore)
     }
   }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setRenderComWeapon(true)
-      calculateResult()
-    }, 2500)
-
-    return () => clearTimeout(timeout)
-  }, [startGame])
 
   function startGame() {
     setIsGameStarted(true)
@@ -165,7 +168,7 @@ const Mainbanner:React.FC<props> = ({score,setScore}) => {
           {renderComWeapon &&
             (comWeapon === "Paper" ? (
               <Paper startGame={""} selectedWeapon="" setSelectedWeapon="" />
-            ) : selectedWeapon === "Rock" ? (
+            ) : comWeapon === "Rock" ? (
               <Rock startGame={""} selectedWeapon="" setSelectedWeapon="" />
             ) : (
               <Scissors startGame={""} selectedWeapon="" setSelectedWeapon="" />
