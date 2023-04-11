@@ -174,7 +174,7 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
 
       {/* Renders when Game starts */}
       <div
-        className="step-2-screen grid grid-cols-2  w-full mt-20"
+        className="step-2-screen grid grid-cols-2  w-full lg:mt-20"
         style={{ display: isGameStarted ? "grid" : "none" }}
       >
         <div
