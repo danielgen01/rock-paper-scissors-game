@@ -11,9 +11,16 @@ import { Spock } from "./weapons/Spock"
 type props = {
   score: number
   setScore: any
+  comScore: number
+  setComScore: any
 }
 
-const Mainbanner: React.FC<props> = ({ score, setScore }) => {
+const Mainbanner: React.FC<props> = ({
+  score,
+  setScore,
+  comScore,
+  setComScore,
+}) => {
   AOS.init()
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false)
@@ -75,8 +82,8 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
       case "Lizard Spock":
       case "Spock Rock":
       case "Spock Scissors":
-        setResult("USER WON");
-        break;
+        setResult("USER WON")
+        break
       case "Rock Paper":
       case "Rock Spock":
       case "Paper Scissors":
@@ -87,29 +94,29 @@ const Mainbanner: React.FC<props> = ({ score, setScore }) => {
       case "Lizard Scissors":
       case "Spock Paper":
       case "Spock Lizard":
-        setResult("COM WON");
-        break;
+        setResult("COM WON")
+        break
       case "Rock Rock":
       case "Paper Paper":
       case "Scissors Scissors":
       case "Lizard Lizard":
       case "Spock Spock":
-        setResult("TIE");
-        break;
+        setResult("TIE")
+        break
       default:
-        setResult("");
-        break;
+        setResult("")
+        break
     }
-  };
-  
+  }
 
   function updateScore() {
     if (result === "USER WON") {
       setScore((prevScore: number) => prevScore + 1)
     } else if (result === "COM WON") {
-      setScore((prevScore: number) => prevScore - 1)
+      setComScore((prevScore: number) => prevScore + 1)
     } else {
       setScore((prevScore: number) => prevScore)
+      setComScore((prevScore: number) => prevScore)
     }
   }
 
