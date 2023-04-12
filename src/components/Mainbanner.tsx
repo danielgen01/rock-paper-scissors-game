@@ -200,7 +200,8 @@ const Mainbanner: React.FC<props> = ({
         <div className="button-ctn flex justify-center w-full ">
           <button
             type="button"
-            className="text-white  font-normal border-2 mt-10 ml-52 lg:ml-[500px] px-7 py-2 rounded-md "
+            className="text-white  font-normal border-2 mt-10 ml-52 lg:ml-[500px] px-7 py-2 rounded-md 
+             hover:bg-white hover:text-black hover:font-bold duration-200 hover:scale-110"
             onClick={toggleRules}
           >
             Rules
