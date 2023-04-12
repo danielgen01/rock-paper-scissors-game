@@ -188,7 +188,7 @@ const Mainbanner: React.FC<props> = ({
           lg:gap-20 flex-nowrap bg-[url(../../images/bg-pentagon.svg)] bg-no-repeat bg-center"
         >
           <Scissors startGame={startGame} {...weaponProps} />
-          <div className="flex justify-between w-screen lg:w-auto gap-10 lg:gap-52 lg:-mt-20 px-2">
+          <div className="flex justify-between w-screen lg:w-auto gap-10 lg:gap-52 lg:-mt-20 px-2 md:justify-center md:gap-52">
             <Spock startGame={startGame} {...weaponProps} />
             <Paper startGame={startGame} {...weaponProps} />
           </div>

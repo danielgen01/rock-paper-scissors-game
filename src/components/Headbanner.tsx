@@ -9,7 +9,7 @@ type props = {
 
 const Headbanner: React.FC<props> = ({ score, setScore, comScore , setComScore }) => {
   return (
-    <div className="mx-10 h-60 flex justify-center items-center">
+    <div className="mx-10  py-1 lg:h-60 flex justify-center items-center">
       <div className="content  w-[599px] h-40 rounded-xl border-4 border-header-outline  flex justify-between">
         <div className="text-column flex flex-col justify-center uppercase text-white font-bold text-xl lg:text-2xl px-5">
           <h1>Rock</h1>
